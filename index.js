@@ -29,11 +29,9 @@ function playerOne() {
       result.textContent = " ";
       console.log(decider);
       const choiceNumber = Math.floor(Math.random()*3)
-      const comp = ['paper','stone','scissor']
-      setTimeout(() => {
-        document.getElementById(comp[choiceNumber]).click()
-      }, 500);
-      
+      const comp = ['paper','stone','scissor']    
+      document.getElementById(comp[choiceNumber]).click()
+ 
     };
   });
 }
