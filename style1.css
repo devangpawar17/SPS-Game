@@ -31,9 +31,7 @@ nav p{
     cursor: pointer;
     border-radius: 5px;
 }
-.item:hover{
-    background-color: rgb(15, 170, 110);
-}
+
 .game_area{
     display: flex;
 }

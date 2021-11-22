@@ -10,36 +10,39 @@ let choosing = document.getElementById("choosing")
 let score_1 = 0
 let score_2 = 0 
 
-var player= prompt("Please enter your name", "");
-if(player==null || player==""){
-  player = "player"
+var Player1= prompt("Please enter first player name", "");
+if(Player1==null || Player1==""){
+  Player1 = "player1"
 }
-document.getElementById("player_score").innerHTML = `${player}'s score : `
-document.getElementById("feed").innerHTML = `Hello ${player}`;
+document.getElementById("player1_score").innerHTML = `${Player1}'s score : `
+var Player2= prompt("Please enter second player name", "");
+if(Player2==null || Player2==""){
+  Player2 = "player2"
+}
+document.getElementById("player2_score").innerHTML = `${Player2}'s score : `
+
+
 
 let playerOptions = [stone, paper, scissor];
 let decider = [];
+document.getElementById("feed").innerHTML = `${Player1}'s Turn`;
 playerOne();
 function playerOne() {
   playerOptions.forEach((option) => {
     option.onclick = () => {
       decider.push(option.innerText);
-      playerTwo();
-    
-      result.textContent = " ";
+
+      document.getElementById("feed").innerHTML = `${Player2}'s Turn`;
       console.log(decider);
-      const choiceNumber = Math.floor(Math.random()*3)
-      const comp = ['paper','stone','scissor']
-      setTimeout(() => {
-        document.getElementById(comp[choiceNumber]).click()
-      }, 500);
       
+      result.textContent = " ";
+      playerTwo();
+
     };
   });
 }
 
 function playerTwo() {
-  
   
   playerOptions.forEach((option) => {
     option.onclick = () => {
@@ -48,7 +51,6 @@ function playerTwo() {
       winner();
     };
   });
-
 }
 
 function winner() {
@@ -57,50 +59,50 @@ function winner() {
 
   let player1 = decider[0];
   let player2 = decider[1];
+
   //main logic
 
   if (player1 === player2) {
     result.textContent = "Tie";
-    choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+    choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
   } else if (player1 == "stone") {
     if (player2 == "paper") {
-      result.textContent = "Computer won";
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player2} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_2++
       score2.textContent = score_2
     } else {
-      result.textContent = `${player} won`;
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player1} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_1++
       score1.textContent = score_1
     }
   } else if (player1 == "scissor") {
     if (player2 == "stone") {
-      result.textContent = "Computer won";
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player2} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_2++
       score2.textContent = score_2
     } else {
-      result.textContent = `${player} won`;
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player1} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_1++
       score1.textContent = score_1
     }
   } else if (player1 == "paper") {
     if (player2 == "scissor") {
-      result.textContent = "Computer won";
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player2} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_2++
       score2.textContent = score_2
     } else {
-      result.textContent = `${player} won`;
-      choosing.innerHTML = `${player} Choose ${player1} & Computer Choose ${player2}`
+      result.textContent = `${Player1} won`;
+      choosing.innerHTML = `${Player1} Choose ${player1} & ${Player2} Choose ${player2}`
       score_1++
       score1.textContent = score_1
     }
   }
-  document.getElementById("feed").innerHTML = `Hello ${player}`;
-
+  document.getElementById("feed").innerHTML = `${Player1}'s Turn`;
   if(score_1>=score_2){
     score1.style.color = '#00FF00'
     score2.style.color = '#F44F2B'
@@ -108,7 +110,6 @@ function winner() {
     score1.style.color = '#F44F2B'
     score2.style.color = '#00FF00'
   }
-
   ///
   decider = [];
   playerOne();
